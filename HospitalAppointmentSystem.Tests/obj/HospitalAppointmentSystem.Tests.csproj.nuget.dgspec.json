@@ -1,0 +1,584 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Tests\\HospitalAppointmentSystem.Tests.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.API\\HospitalAppointmentSystem.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.API\\HospitalAppointmentSystem.API.csproj",
+        "projectName": "HospitalAppointmentSystem.API",
+        "projectPath": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.API\\HospitalAppointmentSystem.API.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.API\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Application\\HospitalAppointmentSystem.Application.csproj": {
+                "projectPath": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Application\\HospitalAppointmentSystem.Application.csproj"
+              },
+              "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.EventBus\\HospitalAppointmentSystem.EventBus.csproj": {
+                "projectPath": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.EventBus\\HospitalAppointmentSystem.EventBus.csproj"
+              },
+              "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Infrastructure\\HospitalAppointmentSystem.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Infrastructure\\HospitalAppointmentSystem.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[9.0.7, )"
+            },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[9.0.2, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.8.1, )"
+            },
+            "Swashbuckle.AspNetCore.Annotations": {
+              "target": "Package",
+              "version": "[6.8.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Application\\HospitalAppointmentSystem.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Application\\HospitalAppointmentSystem.Application.csproj",
+        "projectName": "HospitalAppointmentSystem.Application",
+        "projectPath": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Application\\HospitalAppointmentSystem.Application.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Domain\\HospitalAppointmentSystem.Domain.csproj": {
+                "projectPath": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Domain\\HospitalAppointmentSystem.Domain.csproj"
+              },
+              "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.EventBus\\HospitalAppointmentSystem.EventBus.csproj": {
+                "projectPath": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.EventBus\\HospitalAppointmentSystem.EventBus.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[8.2.1, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.2.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Domain\\HospitalAppointmentSystem.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Domain\\HospitalAppointmentSystem.Domain.csproj",
+        "projectName": "HospitalAppointmentSystem.Domain",
+        "projectPath": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Domain\\HospitalAppointmentSystem.Domain.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.EventBus\\HospitalAppointmentSystem.EventBus.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.EventBus\\HospitalAppointmentSystem.EventBus.csproj",
+        "projectName": "HospitalAppointmentSystem.EventBus",
+        "projectPath": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.EventBus\\HospitalAppointmentSystem.EventBus.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.EventBus\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Domain\\HospitalAppointmentSystem.Domain.csproj": {
+                "projectPath": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Domain\\HospitalAppointmentSystem.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[9.0.7, )"
+            },
+            "Microsoft.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[9.0.7, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[9.0.7, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.8.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Infrastructure\\HospitalAppointmentSystem.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Infrastructure\\HospitalAppointmentSystem.Infrastructure.csproj",
+        "projectName": "HospitalAppointmentSystem.Infrastructure",
+        "projectPath": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Infrastructure\\HospitalAppointmentSystem.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Application\\HospitalAppointmentSystem.Application.csproj": {
+                "projectPath": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Application\\HospitalAppointmentSystem.Application.csproj"
+              },
+              "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Domain\\HospitalAppointmentSystem.Domain.csproj": {
+                "projectPath": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Domain\\HospitalAppointmentSystem.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Bogus": {
+              "target": "Package",
+              "version": "[35.6.3, )"
+            },
+            "Hangfire.AspNetCore": {
+              "target": "Package",
+              "version": "[1.8.14, )"
+            },
+            "Hangfire.Core": {
+              "target": "Package",
+              "version": "[1.8.14, )"
+            },
+            "Hangfire.SqlServer": {
+              "target": "Package",
+              "version": "[1.8.14, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.7, )"
+            },
+            "SendGrid": {
+              "target": "Package",
+              "version": "[9.29.3, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
+            "Serilog.Sinks.Console": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Serilog.Sinks.File": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Serilog.Sinks.MSSqlServer": {
+              "target": "Package",
+              "version": "[6.6.1, )"
+            },
+            "Twilio": {
+              "target": "Package",
+              "version": "[7.2.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Tests\\HospitalAppointmentSystem.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Tests\\HospitalAppointmentSystem.Tests.csproj",
+        "projectName": "HospitalAppointmentSystem.Tests",
+        "projectPath": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Tests\\HospitalAppointmentSystem.Tests.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Tests\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.API\\HospitalAppointmentSystem.API.csproj": {
+                "projectPath": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.API\\HospitalAppointmentSystem.API.csproj"
+              },
+              "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Application\\HospitalAppointmentSystem.Application.csproj": {
+                "projectPath": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Application\\HospitalAppointmentSystem.Application.csproj"
+              },
+              "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Domain\\HospitalAppointmentSystem.Domain.csproj": {
+                "projectPath": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Domain\\HospitalAppointmentSystem.Domain.csproj"
+              },
+              "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Infrastructure\\HospitalAppointmentSystem.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\Admin\\OneDrive\\Escritorio\\Proyectos\\sistema para alumno c#\\HospitalAppointmentSystem.Infrastructure\\HospitalAppointmentSystem.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc.Testing": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.12.0, )"
+            },
+            "Moq": {
+              "target": "Package",
+              "version": "[4.20.70, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[6.0.2, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.9.2, )"
+            },
+            "xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.8.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

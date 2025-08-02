@@ -1,0 +1,107 @@
+2025-07-31 13:32:39.592 -04:00 [INF] Start installing Hangfire SQL objects...
+2025-07-31 13:32:40.114 -04:00 [INF] Hangfire SQL objects installed.
+2025-07-31 13:32:41.023 -04:00 [INF] Starting Hangfire Server using job storage: 'SQL Server: DESKTOP-L9DFS85\MSSQLSERVER01@HospitalAppointmentSystemDb'
+2025-07-31 13:32:41.026 -04:00 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-07-31 13:32:41.032 -04:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-07-31 13:32:41.130 -04:00 [INF] Server desktop-l9dfs85:7124:0bc6c07b successfully announced in 75,5683 ms
+2025-07-31 13:32:41.134 -04:00 [INF] Server desktop-l9dfs85:7124:0bc6c07b is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-07-31 13:32:41.152 -04:00 [INF] Server desktop-l9dfs85:7124:0bc6c07b all the dispatchers started
+2025-07-31 14:02:16.195 -04:00 [WRN] Stopping the server due to DomainUnload or ProcessExit event...
+2025-07-31 14:02:16.199 -04:00 [INF] Server desktop-l9dfs85:7124:0bc6c07b caught stopping signal...
+2025-07-31 14:02:16.203 -04:00 [INF] Server desktop-l9dfs85:7124:0bc6c07b caught stopped signal...
+2025-07-31 14:02:16.206 -04:00 [WRN] Server desktop-l9dfs85:7124:0bc6c07b caught shutdown signal...
+2025-07-31 14:02:16.206 -04:00 [INF] Server desktop-l9dfs85:7124:0bc6c07b All dispatchers stopped
+2025-07-31 14:02:16.218 -04:00 [INF] Server desktop-l9dfs85:7124:0bc6c07b successfully reported itself as stopped in 5,9222 ms
+2025-07-31 14:02:16.221 -04:00 [INF] Server desktop-l9dfs85:7124:0bc6c07b has been stopped in total 18,6102 ms
+[2025-07-31 20:44:27.690 -04:00 INF] Start installing Hangfire SQL objects... {"SourceContext":"Hangfire.SqlServer.SqlServerObjectsInstaller"}
+[2025-07-31 20:44:28.601 -04:00 INF] Hangfire SQL objects installed. {"SourceContext":"Hangfire.SqlServer.SqlServerObjectsInstaller"}
+[2025-07-31 20:44:29.910 -04:00 INF] Starting Hangfire Server using job storage: 'SQL Server: DESKTOP-L9DFS85\MSSQLSERVER01@HospitalAppointmentSystemDb' {"SourceContext":"Hangfire.BackgroundJobServer"}
+[2025-07-31 20:44:29.913 -04:00 INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00. {"SourceContext":"Hangfire.BackgroundJobServer"}
+[2025-07-31 20:44:29.916 -04:00 INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15 {"SourceContext":"Hangfire.BackgroundJobServer"}
+[2025-07-31 20:44:30.054 -04:00 INF] Server desktop-l9dfs85:12556:8d0514a4 successfully announced in 116,5126 ms {"SourceContext":"Hangfire.Server.BackgroundServerProcess"}
+[2025-07-31 20:44:30.058 -04:00 INF] Server desktop-l9dfs85:12556:8d0514a4 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler... {"SourceContext":"Hangfire.Server.BackgroundServerProcess"}
+[2025-07-31 20:44:30.073 -04:00 INF] Server desktop-l9dfs85:12556:8d0514a4 all the dispatchers started {"SourceContext":"Hangfire.Server.BackgroundServerProcess"}
+[2025-07-31 21:54:08.226 -04:00 ERR] An unhandled exception occurred {"SourceContext":"HospitalAppointmentSystem.API.Middleware.ErrorHandlingMiddleware","RequestId":"0HNEGJ5NIH2HP:0000000F","RequestPath":"/api/auth/login","ConnectionId":"0HNEGJ5NIH2HP"}
+System.AggregateException: One or more errors occurred. (The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.)
+ ---> System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at HospitalAppointmentSystem.Application.Services.UserService.VerifyPassword(String password, String hashedPassword) in C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.Application\Services\UserService.cs:line 89
+   at HospitalAppointmentSystem.Application.Services.UserService.ValidatePasswordAsync(User user, String password) in C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.Application\Services\UserService.cs:line 68
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at HospitalAppointmentSystem.Application.Services.UserService.AuthenticateAsync(String email, String password) in C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.Application\Services\UserService.cs:line 58
+   at HospitalAppointmentSystem.API.Controllers.AuthController.Login(LoginDto loginDto) in C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.API\Controllers\AuthController.cs:line 26
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at HospitalAppointmentSystem.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.API\Middleware\ErrorHandlingMiddleware.cs:line 21
+[2025-07-31 21:54:13.440 -04:00 ERR] An unhandled exception occurred {"SourceContext":"HospitalAppointmentSystem.API.Middleware.ErrorHandlingMiddleware","RequestId":"0HNEGJ5NIH2HP:00000013","RequestPath":"/api/auth/login","ConnectionId":"0HNEGJ5NIH2HP"}
+System.AggregateException: One or more errors occurred. (The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.)
+ ---> System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at HospitalAppointmentSystem.Application.Services.UserService.VerifyPassword(String password, String hashedPassword) in C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.Application\Services\UserService.cs:line 89
+   at HospitalAppointmentSystem.Application.Services.UserService.ValidatePasswordAsync(User user, String password) in C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.Application\Services\UserService.cs:line 68
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at HospitalAppointmentSystem.Application.Services.UserService.AuthenticateAsync(String email, String password) in C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.Application\Services\UserService.cs:line 58
+   at HospitalAppointmentSystem.API.Controllers.AuthController.Login(LoginDto loginDto) in C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.API\Controllers\AuthController.cs:line 26
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at HospitalAppointmentSystem.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.API\Middleware\ErrorHandlingMiddleware.cs:line 21
+[2025-07-31 21:54:14.060 -04:00 ERR] An unhandled exception occurred {"SourceContext":"HospitalAppointmentSystem.API.Middleware.ErrorHandlingMiddleware","RequestId":"0HNEGJ5NIH2HP:00000015","RequestPath":"/api/auth/login","ConnectionId":"0HNEGJ5NIH2HP"}
+System.AggregateException: One or more errors occurred. (The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.)
+ ---> System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at HospitalAppointmentSystem.Application.Services.UserService.VerifyPassword(String password, String hashedPassword) in C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.Application\Services\UserService.cs:line 89
+   at HospitalAppointmentSystem.Application.Services.UserService.ValidatePasswordAsync(User user, String password) in C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.Application\Services\UserService.cs:line 68
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at HospitalAppointmentSystem.Application.Services.UserService.AuthenticateAsync(String email, String password) in C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.Application\Services\UserService.cs:line 58
+   at HospitalAppointmentSystem.API.Controllers.AuthController.Login(LoginDto loginDto) in C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.API\Controllers\AuthController.cs:line 26
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at HospitalAppointmentSystem.API.Middleware.ErrorHandlingMiddleware.InvokeAsync(HttpContext context) in C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.API\Middleware\ErrorHandlingMiddleware.cs:line 21
+[2025-07-31 23:36:39.105 -04:00 INF] Server desktop-l9dfs85:12556:8d0514a4 caught stopping signal... {"SourceContext":"Hangfire.Server.BackgroundServerProcess"}
+[2025-07-31 23:36:39.319 -04:00 INF] Server desktop-l9dfs85:12556:8d0514a4 All dispatchers stopped {"SourceContext":"Hangfire.Server.BackgroundServerProcess"}
+[2025-07-31 23:36:39.443 -04:00 INF] Server desktop-l9dfs85:12556:8d0514a4 successfully reported itself as stopped in 84,8672 ms {"SourceContext":"Hangfire.Server.BackgroundServerProcess"}
+[2025-07-31 23:36:39.447 -04:00 INF] Server desktop-l9dfs85:12556:8d0514a4 has been stopped in total 219,9938 ms {"SourceContext":"Hangfire.Server.BackgroundServerProcess"}
