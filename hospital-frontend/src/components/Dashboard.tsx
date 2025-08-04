@@ -227,15 +227,16 @@ const Dashboard: React.FC = () => {
   );
 
   const renderActions = () => {
-    switch (user?.role) {
-      case UserRole.Patient:
-        return getPatientActions();
-      case UserRole.Doctor:
-        return getDoctorActions();
-      case UserRole.Admin:
-        return getAdminActions();
-      default:
-        return null;
+    // Handle both string and number role values
+    const userRole = user?.role;
+    if (userRole === UserRole.Patient || userRole === 'Patient' || userRole === 1) {
+      return getPatientActions();
+    } else if (userRole === UserRole.Doctor || userRole === 'Doctor' || userRole === 2) {
+      return getDoctorActions();
+    } else if (userRole === UserRole.Admin || userRole === 'Admin' || userRole === 3) {
+      return getAdminActions();
+    } else {
+      return null;
     }
   };
 

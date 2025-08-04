@@ -83,6 +83,8 @@ const AppointmentList: React.FC<AppointmentListProps> = ({ onBack }) => {
   };
 
   const getStatusColor = (status: string) => {
+    if (!status || typeof status !== 'string') return 'default';
+    
     switch (status.toLowerCase()) {
       case 'scheduled':
         return 'primary';
@@ -96,6 +98,8 @@ const AppointmentList: React.FC<AppointmentListProps> = ({ onBack }) => {
   };
 
   const getStatusIcon = (status: string) => {
+    if (!status || typeof status !== 'string') return null;
+    
     switch (status.toLowerCase()) {
       case 'scheduled':
         return <AccessTimeOutlined fontSize="small" />;
@@ -241,7 +245,7 @@ const AppointmentList: React.FC<AppointmentListProps> = ({ onBack }) => {
                         />
                       </TableCell>
                       <TableCell>
-                        {appointment.status.toLowerCase() === 'scheduled' && (
+                        {appointment.status && typeof appointment.status === 'string' && appointment.status.toLowerCase() === 'scheduled' && (
                           <Button
                             size="small"
                             color="error"

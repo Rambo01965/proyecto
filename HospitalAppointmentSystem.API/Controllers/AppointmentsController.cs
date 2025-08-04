@@ -92,6 +92,40 @@ public class AppointmentsController : ControllerBase
         }
     }
 
+    [HttpPost("patient")]
+    public async Task<IActionResult> CreatePatientAppointment([FromBody] CreatePatientAppointmentDto createAppointmentDto)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        try
+        {
+            // Get the current user's ID from the JWT token
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "0");
+            
+            if (currentUserId == 0)
+                return Unauthorized("Usuario no autenticado");
+
+            var appointment = new Appointment
+            {
+                PatientId = currentUserId, // Use the authenticated user's ID as PatientId
+                DoctorId = createAppointmentDto.DoctorId,
+                Date = createAppointmentDto.Date,
+                Time = createAppointmentDto.Time,
+                Reason = createAppointmentDto.Reason
+            };
+
+            var createdAppointment = await _appointmentService.CreateAsync(appointment);
+            var completeAppointment = await _appointmentService.GetByIdAsync(createdAppointment.Id);
+
+            return CreatedAtAction(nameof(GetById), new { id = createdAppointment.Id }, MapToDto(completeAppointment!));
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
+    }
+
     [HttpPut("{id}")]
     public async Task<IActionResult> Update(int id, [FromBody] UpdateAppointmentDto updateAppointmentDto)
     {
@@ -105,24 +139,52 @@ public class AppointmentsController : ControllerBase
         try
         {
             // Update only provided fields
-            if (updateAppointmentDto.Date.HasValue)
+            bool hasChanges = false;
+            
+            if (updateAppointmentDto.Date.HasValue && existingAppointment.Date != updateAppointmentDto.Date.Value)
+            {
                 existingAppointment.Date = updateAppointmentDto.Date.Value;
+                hasChanges = true;
+            }
             
-            if (updateAppointmentDto.Time.HasValue)
+            if (updateAppointmentDto.Time.HasValue && existingAppointment.Time != updateAppointmentDto.Time.Value)
+            {
                 existingAppointment.Time = updateAppointmentDto.Time.Value;
+                hasChanges = true;
+            }
             
-            if (updateAppointmentDto.Status.HasValue)
+            if (updateAppointmentDto.Status.HasValue && existingAppointment.Status != updateAppointmentDto.Status.Value)
+            {
                 existingAppointment.Status = updateAppointmentDto.Status.Value;
+                hasChanges = true;
+            }
             
-            if (!string.IsNullOrEmpty(updateAppointmentDto.Reason))
+            if (!string.IsNullOrEmpty(updateAppointmentDto.Reason) && existingAppointment.Reason != updateAppointmentDto.Reason)
+            {
                 existingAppointment.Reason = updateAppointmentDto.Reason;
+                hasChanges = true;
+            }
 
+            if (!hasChanges)
+            {
+                // No changes to save, return existing appointment
+                return Ok(MapToDto(existingAppointment));
+            }
+
+            // Only call UpdateAsync if there are actual changes
             var updatedAppointment = await _appointmentService.UpdateAsync(existingAppointment);
             return Ok(MapToDto(updatedAppointment));
         }
         catch (InvalidOperationException ex)
         {
             return BadRequest(new { message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            // Log the full exception for debugging
+            Console.WriteLine($"Error updating appointment: {ex.Message}");
+            Console.WriteLine($"Inner exception: {ex.InnerException?.Message}");
+            return StatusCode(500, new { message = "An error occurred while updating the appointment.", details = ex.Message });
         }
     }
 
@@ -132,6 +194,20 @@ public class AppointmentsController : ControllerBase
         try
         {
             var updatedAppointment = await _appointmentService.UpdateStatusAsync(id, status);
+            return Ok(MapToDto(updatedAppointment));
+        }
+        catch (ArgumentException)
+        {
+            return NotFound();
+        }
+    }
+
+    [HttpPut("{id}/cancel")]
+    public async Task<IActionResult> CancelAppointment(int id)
+    {
+        try
+        {
+            var updatedAppointment = await _appointmentService.UpdateStatusAsync(id, AppointmentStatus.Cancelled);
             return Ok(MapToDto(updatedAppointment));
         }
         catch (ArgumentException)
@@ -167,7 +243,7 @@ public class AppointmentsController : ControllerBase
             DoctorId = appointment.DoctorId,
             Date = appointment.Date,
             Time = appointment.Time,
-            Status = appointment.Status,
+            Status = appointment.Status.ToString(),
             Reason = appointment.Reason,
             CreatedAt = appointment.CreatedAt,
             Patient = new UserDto

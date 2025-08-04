@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Container,
   Typography,
@@ -40,6 +41,7 @@ interface DoctorSearchProps {
 }
 
 const DoctorSearch: React.FC<DoctorSearchProps> = ({ onBack }) => {
+  const navigate = useNavigate();
   const [doctors, setDoctors] = useState<Doctor[]>([]);
   const [filteredDoctors, setFilteredDoctors] = useState<Doctor[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -93,8 +95,7 @@ const DoctorSearch: React.FC<DoctorSearchProps> = ({ onBack }) => {
 
   const handleBookAppointment = (doctorId: number) => {
     // Navigate to appointment booking with pre-selected doctor
-    // For now, we'll show an alert - this can be enhanced with routing
-    alert(`Booking appointment with Doctor ID: ${doctorId}\nThis will navigate to the appointment booking page.`);
+    navigate('/book-appointment', { state: { selectedDoctorId: doctorId } });
   };
 
   const handleBack = () => {

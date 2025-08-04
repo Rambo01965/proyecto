@@ -13,3 +13,4 @@ C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppo
 C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.EventBus\obj\Debug\net9.0\refint\HospitalAppointmentSystem.EventBus.dll
 C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.EventBus\obj\Debug\net9.0\HospitalAppointmentSystem.EventBus.pdb
 C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.EventBus\obj\Debug\net9.0\ref\HospitalAppointmentSystem.EventBus.dll
+C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.EventBus\obj\Debug\net9.0\HospitalAppointmentSystem.EventBus.sourcelink.json

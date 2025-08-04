@@ -143,3 +143,4 @@ C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppo
 C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.API\obj\Debug\net9.0\HospitalAppointmentSystem.API.pdb
 C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.API\obj\Debug\net9.0\HospitalAppointmentSystem.API.genruntimeconfig.cache
 C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.API\obj\Debug\net9.0\ref\HospitalAppointmentSystem.API.dll
+C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.API\obj\Debug\net9.0\HospitalAppointmentSystem.API.sourcelink.json

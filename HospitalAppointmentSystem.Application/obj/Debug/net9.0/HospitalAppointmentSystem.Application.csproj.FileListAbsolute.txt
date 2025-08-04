@@ -15,3 +15,4 @@ C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppo
 C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.Application\obj\Debug\net9.0\refint\HospitalAppointmentSystem.Application.dll
 C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.Application\obj\Debug\net9.0\HospitalAppointmentSystem.Application.pdb
 C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.Application\obj\Debug\net9.0\ref\HospitalAppointmentSystem.Application.dll
+C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.Application\obj\Debug\net9.0\HospitalAppointmentSystem.Application.sourcelink.json

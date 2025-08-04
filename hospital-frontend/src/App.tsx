@@ -7,6 +7,8 @@ import Login from './components/auth/Login.tsx';
 import Register from './components/auth/Register.tsx';
 import Dashboard from './components/Dashboard.tsx';
 import ProtectedRoute from './components/ProtectedRoute.tsx';
+import AppointmentBooking from './components/patient/AppointmentBooking.tsx';
+import { UserRole } from './types/index.ts';
 
 // Create Material-UI theme
 const theme = createTheme({
@@ -72,11 +74,20 @@ function App() {
                 }
               />
               
+              <Route
+                path="/book-appointment"
+                element={
+                  <ProtectedRoute requiredRole={UserRole.Patient}>
+                    <AppointmentBooking />
+                  </ProtectedRoute>
+                }
+              />
+              
               {/* Role-specific protected routes */}
               <Route
                 path="/patients/*"
                 element={
-                  <ProtectedRoute allowedRoles={['Patient']}>
+                  <ProtectedRoute requiredRole={UserRole.Patient}>
                     <Dashboard />
                   </ProtectedRoute>
                 }
@@ -85,7 +96,7 @@ function App() {
               <Route
                 path="/doctors/*"
                 element={
-                  <ProtectedRoute allowedRoles={['Doctor']}>
+                  <ProtectedRoute requiredRole={UserRole.Doctor}>
                     <Dashboard />
                   </ProtectedRoute>
                 }
@@ -94,7 +105,7 @@ function App() {
               <Route
                 path="/admin/*"
                 element={
-                  <ProtectedRoute allowedRoles={['Admin']}>
+                  <ProtectedRoute requiredRole={UserRole.Admin}>
                     <Dashboard />
                   </ProtectedRoute>
                 }

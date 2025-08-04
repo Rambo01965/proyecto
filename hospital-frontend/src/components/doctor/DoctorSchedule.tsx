@@ -54,6 +54,7 @@ interface DoctorScheduleProps {
 const DoctorSchedule: React.FC<DoctorScheduleProps> = ({ onBack }) => {
   const { user } = useAuth();
   const [appointments, setAppointments] = useState<Appointment[]>([]);
+  const [allAppointments, setAllAppointments] = useState<Appointment[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
   const [selectedDate, setSelectedDate] = useState<string>(new Date().toISOString().split('T')[0]);
@@ -64,14 +65,52 @@ const DoctorSchedule: React.FC<DoctorScheduleProps> = ({ onBack }) => {
 
   useEffect(() => {
     fetchAppointments();
-  }, [selectedDate]);
+  }, []);
+
+  useEffect(() => {
+    filterAppointmentsByDate();
+  }, [selectedDate, allAppointments]);
 
   const fetchAppointments = async () => {
     try {
       setLoading(true);
-      // Fetch appointments for the doctor on the selected date
-      const response = await apiService.get(`/appointments/doctor/${user?.id}?date=${selectedDate}`);
-      setAppointments(response.data);
+      
+      // First get the doctor ID based on the user ID
+      const doctorsResponse = await apiService.get('/doctors');
+      console.log('Doctores disponibles:', doctorsResponse.data);
+      console.log('Usuario actual ID:', user?.id, 'Tipo:', typeof user?.id);
+      
+      // Find doctor with type conversion to ensure proper comparison
+      const currentDoctor = doctorsResponse.data.find((doc: any) => {
+        console.log('Comparando doctor userId:', doc.userId, 'con user.id:', user?.id);
+        return doc.userId === user?.id || doc.userId === Number(user?.id) || String(doc.userId) === String(user?.id);
+      });
+      
+      if (!currentDoctor) {
+        console.error('No se encontró doctor para el usuario:', user?.id);
+        setError('No se pudo encontrar el perfil de doctor. Verifica que tu cuenta esté configurada como doctor.');
+        return;
+      }
+      
+      console.log('Doctor encontrado:', currentDoctor);
+
+      // Get appointments for the doctor
+      const appointmentsResponse = await apiService.get(`/appointments/doctor/${currentDoctor.id}`);
+      const appointmentsData = appointmentsResponse.data;
+      
+      // Transform the data to match the expected format
+      const transformedAppointments = appointmentsData.map((apt: any) => ({
+        id: apt.id,
+        patientName: apt.patient.name,
+        patientId: apt.patient.id,
+        appointmentDate: apt.date,
+        appointmentTime: apt.time,
+        reason: apt.reason,
+        status: apt.status,
+        notes: apt.notes || ''
+      }));
+      
+      setAllAppointments(transformedAppointments);
     } catch (error: any) {
       console.error('Error fetching appointments:', error);
       setError('Error loading appointments. Please try again.');
@@ -80,9 +119,14 @@ const DoctorSchedule: React.FC<DoctorScheduleProps> = ({ onBack }) => {
     }
   };
 
+  const filterAppointmentsByDate = () => {
+    const filtered = allAppointments.filter(apt => apt.appointmentDate === selectedDate);
+    setAppointments(filtered);
+  };
+
   const handleEditAppointment = (appointment: Appointment) => {
     setSelectedAppointment(appointment);
-    setNotes(appointment.notes || '');
+    setNotes(appointment.reason || ''); // Use reason field instead of notes
     setStatus(appointment.status);
     setEditDialogOpen(true);
   };
@@ -91,17 +135,41 @@ const DoctorSchedule: React.FC<DoctorScheduleProps> = ({ onBack }) => {
     if (!selectedAppointment) return;
 
     try {
-      await apiService.put(`/appointments/${selectedAppointment.id}`, {
-        ...selectedAppointment,
-        notes,
-        status
-      });
+      // Convert status string to enum value for backend
+      const statusMap: { [key: string]: number } = {
+        'Scheduled': 1,
+        'Completed': 2,
+        'Cancelled': 3
+      };
+
+      if (!statusMap[status]) {
+        throw new Error(`Invalid status: ${status}`);
+      }
+
+      // Send only the fields expected by UpdateAppointmentDto
+      const updateData = {
+        status: statusMap[status],
+        reason: notes // notes is actually the reason field
+      };
+
+      console.log('Sending update data:', updateData);
+      
+      await apiService.put(`/appointments/${selectedAppointment.id}`, updateData);
       
       // Update local state
       setAppointments(prev => 
         prev.map(apt => 
           apt.id === selectedAppointment.id 
-            ? { ...apt, notes, status: status as any }
+            ? { ...apt, reason: notes, status: status as any }
+            : apt
+        )
+      );
+      
+      // Also update allAppointments to keep consistency
+      setAllAppointments(prev => 
+        prev.map(apt => 
+          apt.id === selectedAppointment.id 
+            ? { ...apt, reason: notes, status: status as any }
             : apt
         )
       );
@@ -119,7 +187,6 @@ const DoctorSchedule: React.FC<DoctorScheduleProps> = ({ onBack }) => {
       case 'Scheduled': return 'primary';
       case 'Completed': return 'success';
       case 'Cancelled': return 'error';
-      case 'No Show': return 'warning';
       default: return 'default';
     }
   };
@@ -129,7 +196,6 @@ const DoctorSchedule: React.FC<DoctorScheduleProps> = ({ onBack }) => {
       case 'Scheduled': return <ScheduleOutlined />;
       case 'Completed': return <CheckCircleOutlined />;
       case 'Cancelled': return <CancelOutlined />;
-      case 'No Show': return <AccessTimeOutlined />;
       default: return <ScheduleOutlined />;
     }
   };
@@ -309,7 +375,6 @@ const DoctorSchedule: React.FC<DoctorScheduleProps> = ({ onBack }) => {
                 <MenuItem value="Scheduled">Programada</MenuItem>
                 <MenuItem value="Completed">Completada</MenuItem>
                 <MenuItem value="Cancelled">Cancelada</MenuItem>
-                <MenuItem value="No Show">No Asistió</MenuItem>
               </Select>
             </FormControl>
 
@@ -317,10 +382,10 @@ const DoctorSchedule: React.FC<DoctorScheduleProps> = ({ onBack }) => {
               fullWidth
               multiline
               rows={4}
-              label="Notas"
+              label="Motivo"
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
-              placeholder="Agregar notas sobre la cita..."
+              placeholder="Actualizar el motivo de la cita..."
             />
           </Box>
         </DialogContent>

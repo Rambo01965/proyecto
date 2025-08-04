@@ -19,3 +19,4 @@ C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppo
 C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.Infrastructure\obj\Debug\net9.0\HospitalAppointmentSystem.Infrastructure.pdb
 C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.Infrastructure\obj\Debug\net9.0\HospitalAppointmentSystem.Infrastructure.genruntimeconfig.cache
 C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.Infrastructure\obj\Debug\net9.0\ref\HospitalAppointmentSystem.Infrastructure.dll
+C:\Users\Admin\OneDrive\Escritorio\Proyectos\sistema para alumno c#\HospitalAppointmentSystem.Infrastructure\obj\Debug\net9.0\HospitalAppointmentSystem.Infrastructure.sourcelink.json

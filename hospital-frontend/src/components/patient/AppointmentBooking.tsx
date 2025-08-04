@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import {
   Container,
   Typography,
@@ -42,6 +43,7 @@ interface AppointmentBookingProps {
 
 const AppointmentBooking: React.FC<AppointmentBookingProps> = ({ onBack }) => {
   const { user } = useAuth();
+  const location = useLocation();
   const [doctors, setDoctors] = useState<Doctor[]>([]);
   const [selectedDoctor, setSelectedDoctor] = useState<number | ''>('');
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -60,6 +62,14 @@ const AppointmentBooking: React.FC<AppointmentBookingProps> = ({ onBack }) => {
   useEffect(() => {
     fetchDoctors();
   }, []);
+
+  useEffect(() => {
+    // Check if a doctor was preselected from navigation
+    const state = location.state as { selectedDoctorId?: number };
+    if (state?.selectedDoctorId) {
+      setSelectedDoctor(state.selectedDoctorId);
+    }
+  }, [location.state, doctors]);
 
   const fetchDoctors = async () => {
     try {
@@ -91,7 +101,7 @@ const AppointmentBooking: React.FC<AppointmentBookingProps> = ({ onBack }) => {
         reason: reason.trim()
       };
 
-      await apiService.post('/appointments', appointmentData);
+      await apiService.post('/appointments/patient', appointmentData);
       
       setSuccess('¡Cita reservada exitosamente!');
       // Reset form

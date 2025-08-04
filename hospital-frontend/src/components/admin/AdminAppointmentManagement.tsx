@@ -56,8 +56,8 @@ interface Appointment {
   doctorName: string;
   patientId: number;
   doctorId: number;
-  appointmentDate: string;
-  appointmentTime: string;
+  date: string;  // Backend sends 'date' not 'appointmentDate'
+  time: string;  // Backend sends 'time' not 'appointmentTime'
   reason: string;
   status: 'Scheduled' | 'Completed' | 'Cancelled' | 'No Show';
   notes?: string;
@@ -82,6 +82,54 @@ const AdminAppointmentManagement: React.FC<AdminAppointmentManagementProps> = ({
   const [editDialogOpen, setEditDialogOpen] = useState<boolean>(false);
   const [editStatus, setEditStatus] = useState<string>('');
   const [editNotes, setEditNotes] = useState<string>('');
+
+  // Safe date formatting function
+  const formatAppointmentDate = (dateString: string | undefined | null): string => {
+    if (!dateString) return 'Fecha no disponible';
+    try {
+      // Handle backend date format "2025-08-03"
+      const parsedDate = parseISO(dateString);
+      if (isNaN(parsedDate.getTime())) {
+        return `Fecha inválida: ${dateString}`;
+      }
+      return format(parsedDate, 'MMM d, yyyy');
+    } catch (error) {
+      console.warn('Error formatting date:', dateString, error);
+      return `Error en fecha: ${dateString}`;
+    }
+  };
+
+  const formatAppointmentDateTime = (dateString: string | undefined | null, timeString: string | undefined | null): string => {
+    if (!dateString || !timeString) return 'Hora no disponible';
+    try {
+      // Handle backend formats: date "2025-08-03" and time "09:00:00"
+      // Create full ISO datetime string
+      const dateTimeString = `${dateString}T${timeString}`;
+      const parsedDate = parseISO(dateTimeString);
+      if (isNaN(parsedDate.getTime())) {
+        return `Hora inválida: ${timeString}`;
+      }
+      return format(parsedDate, 'h:mm a');
+    } catch (error) {
+      console.warn('Error formatting datetime:', dateString, timeString, error);
+      return `Error en hora: ${timeString}`;
+    }
+  };
+
+  const formatCreatedAt = (dateString: string | undefined | null): string => {
+    if (!dateString) return 'Fecha no disponible';
+    try {
+      // Handle backend datetime format "2025-08-03T02:30:35.972038"
+      const parsedDate = parseISO(dateString);
+      if (isNaN(parsedDate.getTime())) {
+        return `Fecha inválida: ${dateString}`;
+      }
+      return format(parsedDate, 'MMM d, yyyy at h:mm a');
+    } catch (error) {
+      console.warn('Error formatting created date:', dateString, error);
+      return `Error en fecha: ${dateString}`;
+    }
+  };
 
   useEffect(() => {
     fetchAppointments();
@@ -125,11 +173,22 @@ const AdminAppointmentManagement: React.FC<AdminAppointmentManagementProps> = ({
     if (dateFilter) {
       const filterDate = parseISO(dateFilter);
       filtered = filtered.filter(appointment => {
-        const appointmentDate = parseISO(appointment.appointmentDate);
-        return isWithinInterval(appointmentDate, {
-          start: startOfDay(filterDate),
-          end: endOfDay(filterDate)
-        });
+        if (!appointment.date) {
+          return false; // Skip appointments without valid dates
+        }
+        try {
+          const appointmentDate = parseISO(appointment.date);
+          if (isNaN(appointmentDate.getTime())) {
+            return false; // Skip invalid dates
+          }
+          return isWithinInterval(appointmentDate, {
+            start: startOfDay(filterDate),
+            end: endOfDay(filterDate)
+          });
+        } catch (error) {
+          console.warn('Invalid appointment date:', appointment.date, error);
+          return false;
+        }
       });
     }
 
@@ -152,10 +211,19 @@ const AdminAppointmentManagement: React.FC<AdminAppointmentManagementProps> = ({
     if (!selectedAppointment) return;
 
     try {
-      await apiService.put(`/admin/appointments/${selectedAppointment.id}`, {
-        status: editStatus,
-        notes: editNotes
-      });
+      // Map status to enum values and send proper payload
+      const statusMapping: { [key: string]: number } = {
+        'Scheduled': 1,
+        'Completed': 2,
+        'Cancelled': 3
+      };
+
+      const payload = {
+        status: statusMapping[editStatus] || 1,
+        reason: editNotes || selectedAppointment.reason
+      };
+
+      await apiService.put(`/admin/appointments/${selectedAppointment.id}`, payload);
       
       // Update local state
       setAppointments(prev => 
@@ -386,10 +454,10 @@ const AdminAppointmentManagement: React.FC<AdminAppointmentManagementProps> = ({
                     <TableCell>
                       <Box>
                         <Typography variant="subtitle2">
-                          {format(parseISO(appointment.appointmentDate), 'MMM d, yyyy')}
+                          {formatAppointmentDate(appointment.date)}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                          {format(parseISO(`${appointment.appointmentDate}T${appointment.appointmentTime}`), 'h:mm a')}
+                          {formatAppointmentDateTime(appointment.date, appointment.time)}
                         </Typography>
                       </Box>
                     </TableCell>
@@ -502,8 +570,8 @@ const AdminAppointmentManagement: React.FC<AdminAppointmentManagementProps> = ({
                 </Grid>
                 <Grid item xs={12} md={6}>
                   <Typography variant="h6" gutterBottom>Detalles de la Cita</Typography>
-                  <Typography><strong>Fecha:</strong> {format(parseISO(selectedAppointment.appointmentDate), 'MMMM d, yyyy')}</Typography>
-                  <Typography><strong>Hora:</strong> {format(parseISO(`${selectedAppointment.appointmentDate}T${selectedAppointment.appointmentTime}`), 'h:mm a')}</Typography>
+                  <Typography><strong>Fecha:</strong> {formatAppointmentDate(selectedAppointment.date)}</Typography>
+                  <Typography><strong>Hora:</strong> {formatAppointmentDateTime(selectedAppointment.date, selectedAppointment.time)}</Typography>
                   <Typography><strong>Motivo:</strong> {selectedAppointment.reason}</Typography>
                 </Grid>
                 <Grid item xs={12} md={6}>
@@ -520,7 +588,7 @@ const AdminAppointmentManagement: React.FC<AdminAppointmentManagementProps> = ({
                     <Typography><strong>Notas:</strong> {selectedAppointment.notes}</Typography>
                   )}
                   <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-                    <strong>Creado:</strong> {format(parseISO(selectedAppointment.createdAt), 'MMM d, yyyy at h:mm a')}
+                    <strong>Creado:</strong> {formatCreatedAt(selectedAppointment.createdAt)}
                   </Typography>
                 </Grid>
               </Grid>
@@ -543,7 +611,7 @@ const AdminAppointmentManagement: React.FC<AdminAppointmentManagementProps> = ({
                   {selectedAppointment.patientName} - Dr. {selectedAppointment.doctorName}
                 </Typography>
                 <Typography variant="body2" color="text.secondary" gutterBottom>
-                  {format(parseISO(`${selectedAppointment.appointmentDate}T${selectedAppointment.appointmentTime}`), 'MMMM d, yyyy at h:mm a')}
+                  {formatAppointmentDate(selectedAppointment.date)} - {formatAppointmentDateTime(selectedAppointment.date, selectedAppointment.time)}
                 </Typography>
                 
                 <Divider sx={{ my: 2 }} />
@@ -558,7 +626,6 @@ const AdminAppointmentManagement: React.FC<AdminAppointmentManagementProps> = ({
                     <MenuItem value="Scheduled">Programada</MenuItem>
                     <MenuItem value="Completed">Completada</MenuItem>
                     <MenuItem value="Cancelled">Cancelada</MenuItem>
-                    <MenuItem value="No Show">No Asistió</MenuItem>
                   </Select>
                 </FormControl>
 
@@ -566,10 +633,10 @@ const AdminAppointmentManagement: React.FC<AdminAppointmentManagementProps> = ({
                   fullWidth
                   multiline
                   rows={4}
-                  label="Notas"
+                  label="Motivo/Notas"
                   value={editNotes}
                   onChange={(e) => setEditNotes(e.target.value)}
-                  placeholder="Agregar notas sobre la cita..."
+                  placeholder="Agregar motivo o notas sobre la cita..."
                 />
               </>
             )}

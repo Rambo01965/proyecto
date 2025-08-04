@@ -1,0 +1,32 @@
+2025-08-02 21:48:31.298 -04:00 [INF] Start installing Hangfire SQL objects...
+2025-08-02 21:48:31.835 -04:00 [INF] Hangfire SQL objects installed.
+2025-08-02 21:48:32.996 -04:00 [INF] Starting Hangfire Server using job storage: 'SQL Server: DESKTOP-L9DFS85\MSSQLSERVER01@HospitalAppointmentSystemDb'
+2025-08-02 21:48:33.000 -04:00 [INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00.
+2025-08-02 21:48:33.002 -04:00 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2025-08-02 21:48:33.105 -04:00 [INF] Server desktop-l9dfs85:2288:fb9db634 successfully announced in 83,6581 ms
+2025-08-02 21:48:33.109 -04:00 [INF] Server desktop-l9dfs85:2288:fb9db634 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2025-08-02 21:48:33.123 -04:00 [INF] Server desktop-l9dfs85:2288:fb9db634 all the dispatchers started
+2025-08-02 21:53:22.564 -04:00 [INF] Server desktop-l9dfs85:2288:fb9db634 caught stopping signal...
+2025-08-02 21:53:22.582 -04:00 [INF] Server desktop-l9dfs85:2288:fb9db634 All dispatchers stopped
+2025-08-02 21:53:22.595 -04:00 [INF] Server desktop-l9dfs85:2288:fb9db634 successfully reported itself as stopped in 5,8244 ms
+2025-08-02 21:53:22.602 -04:00 [INF] Server desktop-l9dfs85:2288:fb9db634 has been stopped in total 33,0314 ms
+[2025-08-02 21:59:50.762 -04:00 INF] Start installing Hangfire SQL objects... {"SourceContext":"Hangfire.SqlServer.SqlServerObjectsInstaller"}
+[2025-08-02 21:59:51.312 -04:00 INF] Hangfire SQL objects installed. {"SourceContext":"Hangfire.SqlServer.SqlServerObjectsInstaller"}
+[2025-08-02 21:59:52.717 -04:00 INF] Starting Hangfire Server using job storage: 'SQL Server: DESKTOP-L9DFS85\MSSQLSERVER01@HospitalAppointmentSystemDb' {"SourceContext":"Hangfire.BackgroundJobServer"}
+[2025-08-02 21:59:52.720 -04:00 INF] Using the following options for SQL Server job storage: Queue poll interval: 00:00:00. {"SourceContext":"Hangfire.BackgroundJobServer"}
+[2025-08-02 21:59:52.723 -04:00 INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15 {"SourceContext":"Hangfire.BackgroundJobServer"}
+[2025-08-02 21:59:52.839 -04:00 INF] Server desktop-l9dfs85:14280:8d2ef746 successfully announced in 89,0162 ms {"SourceContext":"Hangfire.Server.BackgroundServerProcess"}
+[2025-08-02 21:59:52.846 -04:00 INF] Server desktop-l9dfs85:14280:8d2ef746 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, SqlServerHeartbeatProcess, Worker, DelayedJobScheduler, RecurringJobScheduler... {"SourceContext":"Hangfire.Server.BackgroundServerProcess"}
+[2025-08-02 21:59:52.873 -04:00 INF] Server desktop-l9dfs85:14280:8d2ef746 all the dispatchers started {"SourceContext":"Hangfire.Server.BackgroundServerProcess"}
+[2025-08-02 22:04:43.546 -04:00 INF] Server desktop-l9dfs85:14280:8d2ef746 caught stopping signal... {"SourceContext":"Hangfire.Server.BackgroundServerProcess"}
+[2025-08-02 22:04:43.566 -04:00 INF] Server desktop-l9dfs85:14280:8d2ef746 All dispatchers stopped {"SourceContext":"Hangfire.Server.BackgroundServerProcess"}
+[2025-08-02 22:04:43.579 -04:00 INF] Server desktop-l9dfs85:14280:8d2ef746 successfully reported itself as stopped in 3,6753 ms {"SourceContext":"Hangfire.Server.BackgroundServerProcess"}
+[2025-08-02 22:04:43.583 -04:00 INF] Server desktop-l9dfs85:14280:8d2ef746 has been stopped in total 24,2506 ms {"SourceContext":"Hangfire.Server.BackgroundServerProcess"}

@@ -13,7 +13,7 @@ public class AppointmentDto
     public DoctorDto? Doctor { get; set; }
     public DateOnly Date { get; set; }
     public TimeOnly Time { get; set; }
-    public AppointmentStatus Status { get; set; }
+    public string Status { get; set; } = string.Empty;
     public string Reason { get; set; } = string.Empty;
     public DateTime CreatedAt { get; set; }
 }
@@ -21,6 +21,14 @@ public class AppointmentDto
 public class CreateAppointmentDto
 {
     public int PatientId { get; set; }
+    public int DoctorId { get; set; }
+    public DateOnly Date { get; set; }
+    public TimeOnly Time { get; set; }
+    public string Reason { get; set; } = string.Empty;
+}
+
+public class CreatePatientAppointmentDto
+{
     public int DoctorId { get; set; }
     public DateOnly Date { get; set; }
     public TimeOnly Time { get; set; }

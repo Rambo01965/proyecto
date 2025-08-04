@@ -197,12 +197,102 @@ public class AdminController : ControllerBase
             DoctorName = a.Doctor?.User?.Name ?? "",
             Date = a.Date,
             Time = a.Time,
-            Status = a.Status,
+            Status = a.Status.ToString(),
             Reason = a.Reason,
             CreatedAt = a.CreatedAt
         });
 
         return Ok(appointmentDtos);
+    }
+
+    [HttpPut("appointments/{id}")]
+    public async Task<IActionResult> UpdateAppointment(int id, [FromBody] UpdateAppointmentDto updateAppointmentDto)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        var existingAppointment = await _appointmentService.GetByIdAsync(id);
+        if (existingAppointment == null)
+            return NotFound();
+
+        try
+        {
+            // Update only provided fields
+            bool hasChanges = false;
+            
+            if (updateAppointmentDto.Date.HasValue && existingAppointment.Date != updateAppointmentDto.Date.Value)
+            {
+                existingAppointment.Date = updateAppointmentDto.Date.Value;
+                hasChanges = true;
+            }
+            
+            if (updateAppointmentDto.Time.HasValue && existingAppointment.Time != updateAppointmentDto.Time.Value)
+            {
+                existingAppointment.Time = updateAppointmentDto.Time.Value;
+                hasChanges = true;
+            }
+            
+            if (updateAppointmentDto.Status.HasValue && existingAppointment.Status != updateAppointmentDto.Status.Value)
+            {
+                existingAppointment.Status = updateAppointmentDto.Status.Value;
+                hasChanges = true;
+            }
+            
+            if (!string.IsNullOrEmpty(updateAppointmentDto.Reason) && existingAppointment.Reason != updateAppointmentDto.Reason)
+            {
+                existingAppointment.Reason = updateAppointmentDto.Reason;
+                hasChanges = true;
+            }
+
+            if (!hasChanges)
+            {
+                // No changes to save, return existing appointment
+                return Ok(MapAppointmentToDto(existingAppointment));
+            }
+
+            // Only call UpdateAsync if there are actual changes
+            var updatedAppointment = await _appointmentService.UpdateAsync(existingAppointment);
+            return Ok(MapAppointmentToDto(updatedAppointment));
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            // Log the full exception for debugging
+            Console.WriteLine($"Error updating appointment: {ex.Message}");
+            Console.WriteLine($"Inner exception: {ex.InnerException?.Message}");
+            return StatusCode(500, new { message = "An error occurred while updating the appointment.", details = ex.Message });
+        }
+    }
+
+    private AppointmentDto MapAppointmentToDto(Appointment appointment)
+    {
+        return new AppointmentDto
+        {
+            Id = appointment.Id,
+            PatientId = appointment.PatientId,
+            PatientName = appointment.Patient?.Name ?? "",
+            DoctorId = appointment.DoctorId,
+            DoctorName = appointment.Doctor?.User?.Name ?? "",
+            Date = appointment.Date,
+            Time = appointment.Time,
+            Status = appointment.Status.ToString(),
+            Reason = appointment.Reason,
+            CreatedAt = appointment.CreatedAt
+        };
+    }
+
+    [HttpDelete("appointments/{id}")]
+    public async Task<IActionResult> DeleteAppointment(int id)
+    {
+        var appointment = await _appointmentService.GetByIdAsync(id);
+        if (appointment == null)
+            return NotFound();
+
+        await _appointmentService.DeleteAsync(id);
+        return NoContent();
     }
 
     [HttpGet("doctors")]

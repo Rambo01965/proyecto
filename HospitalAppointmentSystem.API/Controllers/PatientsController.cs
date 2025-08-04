@@ -82,7 +82,7 @@ public class PatientsController : ControllerBase
             DoctorName = a.Doctor?.User?.Name ?? "",
             Date = a.Date,
             Time = a.Time,
-            Status = a.Status,
+            Status = a.Status.ToString(),
             Reason = a.Reason,
             CreatedAt = a.CreatedAt
         });
@@ -161,7 +161,7 @@ public class PatientsController : ControllerBase
             DoctorName = createdAppointment.Doctor?.User?.Name ?? "",
             Date = createdAppointment.Date,
             Time = createdAppointment.Time,
-            Status = createdAppointment.Status,
+            Status = createdAppointment.Status.ToString(),
             Reason = createdAppointment.Reason,
             CreatedAt = createdAppointment.CreatedAt
         };

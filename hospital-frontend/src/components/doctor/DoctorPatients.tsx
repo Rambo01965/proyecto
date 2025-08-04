@@ -180,7 +180,18 @@ const DoctorPatients: React.FC<DoctorPatientsProps> = ({ onBack }) => {
         (appointment: any) => appointment.doctorId === currentDoctor?.id
       );
       
-      setPatientHistory(doctorAppointments);
+      // Transform and validate appointment data
+    const transformedAppointments = doctorAppointments.map((apt: any) => ({
+      id: apt.id,
+      appointmentDate: apt.date, // Backend uses 'date' not 'appointmentDate'
+      appointmentTime: apt.time, // Backend uses 'time' not 'appointmentTime'
+      reason: apt.reason,
+      status: apt.status,
+      notes: apt.notes || ''
+    }));
+    
+    console.log('Patient history appointments:', transformedAppointments);
+    setPatientHistory(transformedAppointments);
     } catch (error: any) {
       console.error('Error fetching patient history:', error);
       setError('Error al cargar el historial del paciente. Por favor intenta de nuevo.');
@@ -199,16 +210,41 @@ const DoctorPatients: React.FC<DoctorPatientsProps> = ({ onBack }) => {
     }
   };
 
-  const calculateAge = (dateOfBirth?: string) => {
+  const calculateAge = (dateOfBirth?: string): string => {
     if (!dateOfBirth) return 'N/A';
+    
+    const birthDate = new Date(dateOfBirth);
     const today = new Date();
-    const birthDate = parseISO(dateOfBirth);
-    let age = today.getFullYear() - birthDate.getFullYear();
+    const age = today.getFullYear() - birthDate.getFullYear();
     const monthDiff = today.getMonth() - birthDate.getMonth();
+    
     if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-      age--;
+      return `${age - 1} años`;
     }
-    return `${age} years`;
+    return `${age} años`;
+  };
+
+  const formatAppointmentDateTime = (appointmentDate?: string, appointmentTime?: string): string => {
+    try {
+      if (!appointmentDate || !appointmentTime) {
+        return 'Fecha no disponible';
+      }
+      
+      // Try to parse the date and time
+      const dateTimeString = `${appointmentDate}T${appointmentTime}`;
+      const parsedDate = parseISO(dateTimeString);
+      
+      // Check if the parsed date is valid
+      if (isNaN(parsedDate.getTime())) {
+        console.warn('Invalid date/time:', { appointmentDate, appointmentTime });
+        return `${appointmentDate} ${appointmentTime}`;
+      }
+      
+      return format(parsedDate, 'MMM d, yyyy at h:mm a');
+    } catch (error) {
+      console.error('Error formatting date:', error, { appointmentDate, appointmentTime });
+      return `${appointmentDate || 'N/A'} ${appointmentTime || 'N/A'}`;
+    }
   };
 
   const handleBack = () => {
@@ -381,7 +417,7 @@ const DoctorPatients: React.FC<DoctorPatientsProps> = ({ onBack }) => {
                       primary={
                         <Box display="flex" justifyContent="space-between" alignItems="center">
                           <Typography variant="h6">
-                            {format(parseISO(`${appointment.appointmentDate}T${appointment.appointmentTime}`), 'MMM d, yyyy at h:mm a')}
+                            {formatAppointmentDateTime(appointment.appointmentDate, appointment.appointmentTime)}
                           </Typography>
                           <Chip
                             label={appointment.status}
